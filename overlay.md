@@ -136,6 +136,6 @@ showOverlay()
         return;
     }
     //adding UI to this outlet
-    this.overlayRef.attach(new ComponentPortal(UiComponent));
+    this.overlayRef.attach(new ComponentPortal(UIComponent));
 }
 ```
