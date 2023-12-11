@@ -61,10 +61,10 @@ The immediate thing we would do is to place this component in html of AppCompone
 Next thing we need to create component that will hold our UI to be displayed as popup/overlay.
 
 ```bash
-$ ng g c cdk/overlay/overlay --standalone
+$ ng g c cdk/overlay/ui --standalone
 ```
 
-This creates component named: `OverlayComponent` with selector as `app-overlay`. We will not be using pasting this tag `<app-overlay>` anywhere. We will display it however using services and classes available in [Angular CDK](https://material.angular.io/cdk/overlay/api) documentation.
+This creates component named: `UIComponent` with selector as `app-ui`. We will not be using pasting this tag `<app-ui>` anywhere. We will display it however using services and classes available in [Angular CDK](https://material.angular.io/cdk/overlay/api) documentation.
 
 
 Don't forget to include following CSS in the global style sheet. This is general for all angular cdk widgets.
@@ -88,7 +88,7 @@ overlayRef!:OverlayRef; //store reference of overlay
 constructor(private overlay: Overlay){}
 ```
 
-Next thing we need to create instance of overlay by providing configuration to `create` method. We need to use `AfterViewInit` lifecycle hook to put all our code there. Note that our UI componet is of type component and therefore type of portal we need to attach to overlay is of Component portal. The overlay can be of `ComponentPortal`, `TemplatePortal` or any HTML DOM converted to `Portal`.
+Next thing we need to create instance of overlay by providing configuration to `create` method. We need to use `AfterViewInit` lifecycle hook to put all our code there. Note that our UI componet is of type component and therefore type of portal we need to attach to overlay is of Component portal. The overlay can be of `ComponentPortal`, `TemplatePortal` or any custom `Portal` instance defined using HTML DOM.
 
 ```ts
 ngAfterViewInit()
@@ -137,5 +137,18 @@ showOverlay()
     }
     //adding UI to this outlet
     this.overlayRef.attach(new ComponentPortal(UIComponent));
+}
+```
+Let's style our overlay component so that it gets displayed nice looking popup with following CSS:
+
+```css
+/* ui.component.css */
+:host{
+    display: block;
+    width: 10em;
+    height: 10em;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 ```
