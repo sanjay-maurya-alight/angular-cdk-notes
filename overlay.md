@@ -191,3 +191,21 @@ showOverlay()
     this.overlayRef.updatePositionStrategy(positionStrategy); //position is added here
 }
 ```
+There is another option to build `positionStrategy` using service `OverlayPositionBuilder`.
+
+```ts
+import { Overlay, OverlayPositionBuilder, OverlayRef } from '@angular/cdk/overlay';
+constructor(private overlay:Overlay, private positionBuilder: OverlayPositionBuilder){}
+```
+There are two methods for this position builder:
+-  `flexibleConnectedTo`
+- `global`
+
+Both these methods return `FlexibleConnectedPositionStrategy` and `GlobalPositionStrategy` instances. For example, for global position strategy:
+
+```ts
+const globalPositionStrategy = this.positionBuilder
+    .global() //sets up global position strategy
+    .centerHorizontally() //align center horizontally
+    .centerVertically();  //alignt center vertically
+```
