@@ -35,7 +35,7 @@ export class AppComponent{}
 ```
 
 Now there are two ways we can implement Overlay.
-1. Using without directive
-2. Using directives and corresponding handlers
+1. Using without Overlay directives
+2. Using Overlay directives and corresponding handlers
 
 We will start off with first approach first and then second approach.
