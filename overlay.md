@@ -152,3 +152,42 @@ Let's style our overlay component so that it gets displayed nice looking popup w
     border-radius: 5px;
 }
 ```
+
+Next thing we will position UIComponent in the center of screen. There are two type of position strategies available: global and connected. In global position strategy the Popup is not relative to portal outlet and positioned relative to viewport. Whereas in connected strategy, the popup UI is displayed relative to portal outlet.
+
+There are two ways in which we can set the position strategy:
+1. During creation of overlay/popup using `positionStrategy` config of `create` method
+2. Using `updatePositionStrategy` of reference of overlay instance.
+
+Both these methods accept `positionStrategy` interface. The `positionStrategy` can be obtained from Overlay service already we imported. It has method `position` which returns `positionStrategy`. 
+
+```ts
+const positionStrategy = this.overlay
+    .position() //get position strategy interface
+    .global()   //set global position strategy
+    .centerHorizontally() //align center horizontally
+    .centerVertically();  //alignt center vertically
+```
+
+We can set this position strategy where ever there is demand for `positionStrategy` interface in the Angular CDK documentation. For example, in our case we can do like below:
+
+```ts
+ngAfterViewInit(): void {
+    this.overlayRef = this.overlay.create({
+        positionStrategy : positionStrategy //position is added here
+    });
+}
+```
+Or we can set the position strategy after we have attached the portal UI:
+```ts
+showOverlay()
+{
+    if (this.overlayRef.hasAttached()) {
+        this.overlayRef.detach();
+        return;
+    }
+    //adding UI to this outlet
+    this.overlayRef.attach(new ComponentPortal(UiComponent));
+    this.overlayRef.updatePositionStrategy(positionStrategy); //position is added here
+}
+```
