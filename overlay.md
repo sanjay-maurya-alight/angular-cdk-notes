@@ -209,3 +209,20 @@ const globalPositionStrategy = this.positionBuilder
     .centerHorizontally() //align center horizontally
     .centerVertically();  //alignt center vertically
 ```
+
+Overlay
+----------
+Points to complete
+- connected position
+- backdrop: click, z-index, 
+- directive based coding
+
+Examples to cover
+-------------------------------
+Task global Position:
+- pass data to modal window and display
+- Click an item/action on modal; pass data from modal window to issuser
+- otp screen
+- create table and view information for particular column and row. For example view receipt
+
+
