@@ -124,3 +124,46 @@ ngAfterViewInit(): void {
 }
 ```
 
+## Few Methods of DragRef
+Let's modify HTML for parent component html as below so that we can test the few methods after we click the button.
+
+```html
+<!-- parent.component.html -->
+<div class="boundary" #boundary>
+    <div class="example-box" #drgable>
+        <app-child></app-child>
+    </div>
+</div>
+<button (click)="draggedItem()">Get current details</button>
+```
+Here class `.boundary` is used for displaying visual boundary in which the draggble is placed and can be restricted using a method shown in example below when clicked.
+
+```css
+/* parent.component.css */
+.boundary{
+  border: 3px dashed gray;
+  height: 300px;
+  width: 400px;
+}
+```
+And
+
+```ts
+// parent.component.ts
+@ViewChild('boundary') boundary!:HTMLDivElement;
+
+draggedItem()
+{
+    //Returns the root draggable element as HTMLElement.
+    console.log('getRootElement: ', this.dragRef.getRootElement());
+
+    //Checks whether the element is currently being dragged.
+    console.log('isDragging: ', this.dragRef.isDragging());
+
+    //Resets a standalone drag item to its initial position.
+    this.dragRef.reset();
+
+    //sets the boundary in which draggable item is restricted
+    this.dragRef.withBoundaryElement(this.boundary);
+}
+```
