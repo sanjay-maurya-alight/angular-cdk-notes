@@ -111,6 +111,16 @@ ngAfterViewInit(): void {
     this.dd.createDrag(this.dagger);
 }
 ```
-
 As soon as the code runs, the child component becomes draggable. We can drag the child component anywhere on the screen.
+
+The `createDrag` method returns reference of draggable item as `DragRef` which we can use it to manipulate or dispose it. Let's add class property to hold `DragRef` and assign `createDrag` method's return ref:
+
+```ts
+// define property to hold drag ref
+dragRef!:DragRef;
+
+ngAfterViewInit(): void {
+    this.dragRef = this.dd.createDrag(this.dagger);
+}
+```
 
