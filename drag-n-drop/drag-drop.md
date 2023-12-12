@@ -151,6 +151,7 @@ And
 ```ts
 // parent.component.ts
 @ViewChild('boundary') boundary!:HTMLDivElement;
+...
 
 draggedItem()
 {
@@ -167,3 +168,4 @@ draggedItem()
     this.dragRef.withBoundaryElement(this.boundary);
 }
 ```
+Now drag the draggable item and hit the button to see console response. The method `isDragging` will always return `false` in this case as this method is test when item is being dragged.
